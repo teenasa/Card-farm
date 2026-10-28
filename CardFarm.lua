@@ -21,20 +21,11 @@ local State = {
 }
 
 local PACK_LIST = {
-    "Academy Pack", "Alchemy Pack", "Arcane Pack", "Azure Pack", "Beast Pack",
-    "Blaze Pack", "Blossom Pack", "Brawler Pack", "Bull Pack",
-    "Chainsaw Pack", "Chrono Pack", "Conquest Pack", "Contract Pack",
-    "Cosmos Pack", "Crimson Pack", "Duel Pack", "Dunk Pack", "Dynasty Pack",
-    "Emblem Pack", "Eternity Pack", "Fallen Pack", "Fiber Pack", "Grail Pack",
-    "Justice Pack", "Lunar Pack", "Mecha Pack", "Moon Pack", "Moonfang Pack",
-    "Moonlight Pack", "Nightfall Pack", "Occult Pack", "Power Pack",
-    "Psychic Pack", "Raven Pack", "Reaper Pack", "Rebellion Pack",
-    "Requiem Pack", "Revenge Pack", "Shield Pack", "Smash Pack", "Soul Pack",
-    "Spider Pack", "Swordsman Pack", "Valkyrie Pack", "Zenith Pack",
+    
+     "Bull Pack","Spider Pack", 
 }
 local STATUS_LIST = {
-    "Normal", "Golden", "Diamond", "Rainbow", "Sakura", "Venomous", "Candy",
-    "Blessed", "Glitch", "Radioactive",
+    "Glitch", 
     "Starfallen", "Admin", "Nullstar", "Unknown", "Nightmare",
 }
 
@@ -181,7 +172,7 @@ new("UIStroke", { Color = C.accent, Thickness = 1.5, Transparency = 0.3 }, main)
 -- Title bar
 local title = new("Frame", { Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = C.panel, BorderSizePixel = 0 }, main)
 new("TextLabel", {
-    Text = "🃏  Card Farm", Font = FONTB, TextSize = 20, TextColor3 = C.text,
+    Text = "🃏  Card Farm by TeeDohe", Font = FONTB, TextSize = 20, TextColor3 = C.text,
     BackgroundTransparency = 1, Size = UDim2.new(1, -90, 1, 0), Position = UDim2.fromOffset(14, 0),
     TextXAlignment = Enum.TextXAlignment.Left,
 }, title)
