@@ -172,7 +172,7 @@ new("UIStroke", { Color = C.accent, Thickness = 1.5, Transparency = 0.3 }, main)
 -- Title bar
 local title = new("Frame", { Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = C.panel, BorderSizePixel = 0 }, main)
 new("TextLabel", {
-    Text = "🃏  Card Farm by TeeDohe", Font = FONTB, TextSize = 20, TextColor3 = C.text,
+    Text = "🦥  Card Farm by TeeDohe", Font = FONTB, TextSize = 20, TextColor3 = C.text,
     BackgroundTransparency = 1, Size = UDim2.new(1, -90, 1, 0), Position = UDim2.fromOffset(14, 0),
     TextXAlignment = Enum.TextXAlignment.Left,
 }, title)
@@ -314,18 +314,41 @@ task.spawn(function()
 end)
 
 ----------------------------------------------------------------
--- หน้า: แพ็ก
+-- หน้า: แพ็ก (มีช่องค้นหา)
 ----------------------------------------------------------------
 local pPacks = newPage("packs", "แพ็ก")
 makeLabel(pPacks, "เลือกแพ็กที่จะซื้อ (ไม่เลือกเลย = ซื้อทุกแพ็ก)\nแพ็กใหม่บนสายพานจะเพิ่มในรายการเอง", 0, 40)
-local packSetters = {}
+
+-- ช่องค้นหา
+local packSearch = new("TextBox", {
+    PlaceholderText = "🔍 ค้นหาชื่อแพ็ก...", Text = "", Font = FONT, TextSize = 16,
+    TextColor3 = C.text, PlaceholderColor3 = C.sub, BackgroundColor3 = C.panel,
+    Size = UDim2.new(1, -6, 0, 34), LayoutOrder = 1, ClearTextOnFocus = false,
+    TextXAlignment = Enum.TextXAlignment.Left,
+}, pPacks)
+corner(packSearch, 8)
+new("UIPadding", { PaddingLeft = UDim.new(0, 10) }, packSearch)
+
+local packSetters, packRows = {}, {}
+
+local function applyPackFilter()
+    local q = packSearch.Text:lower()
+    for name, row in pairs(packRows) do
+        row.Visible = (q == "") or (name:lower():find(q, 1, true) ~= nil)
+    end
+end
+packSearch:GetPropertyChangedSignal("Text"):Connect(applyPackFilter)
+
 function ensurePack(name)
     if packSetters[name] then return end
     State.Packs[name] = false
-    packSetters[name] = makeToggle(pPacks, name, false, function(v) State.Packs[name] = v end, 10)
+    local set, row = makeToggle(pPacks, name, false, function(v) State.Packs[name] = v end, 10)
+    packSetters[name], packRows[name] = set, row
+    applyPackFilter() -- แพ็กใหม่ที่โผล่มาตอนมีคำค้นอยู่ จะถูกกรองด้วย
 end
 for _, n in ipairs(PACK_LIST) do ensurePack(n) end
-makeButton(pPacks, "ล้างการเลือกทั้งหมด", 1, function()
+
+makeButton(pPacks, "ล้างการเลือกทั้งหมด", 2, function()
     for n, set in pairs(packSetters) do set(false); State.Packs[n] = false end
 end, C.off)
 
