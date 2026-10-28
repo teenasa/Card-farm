@@ -172,7 +172,7 @@ new("UIStroke", { Color = C.accent, Thickness = 1.5, Transparency = 0.3 }, main)
 -- Title bar
 local title = new("Frame", { Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = C.panel, BorderSizePixel = 0 }, main)
 new("TextLabel", {
-    Text = "🦥  Card Farm by TeeDohe", Font = FONTB, TextSize = 20, TextColor3 = C.text,
+    Text = "🦥  Card Farm by TeeDohe 💫", Font = FONTB, TextSize = 20, TextColor3 = C.text,
     BackgroundTransparency = 1, Size = UDim2.new(1, -90, 1, 0), Position = UDim2.fromOffset(14, 0),
     TextXAlignment = Enum.TextXAlignment.Left,
 }, title)
