@@ -22,7 +22,7 @@ local State = {
 
 local PACK_LIST = {
     
-     "Bull Pack","Spider Pack", 
+     "Curse Pack","Vampire Pack", 
 }
 local STATUS_LIST = {
     "Glitch", 
